@@ -15,7 +15,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",                 // Trust Localhost
-    "taskmind-ai-app.vercel.app"
+    "https://taskmind-ai-app.vercel.app"
   ],
   credentials: true,                         // Allow cookies/tokens
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these actions
