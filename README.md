@@ -1,56 +1,88 @@
-# ✨ MindFlow AI
+# 🖊️ TaskMind AI
 
-**MindFlow AI** is an intelligent productivity platform that transforms scattered notes into structured daily plans using next-gen LLMs.
+> **From Chaos to Clarity.** > An intelligent productivity platform that transforms scattered notes into structured daily plans using next-gen Generative AI.
 
-![MERN Stack](https://img.shields.io/badge/MERN-Stack-green)
-![AI Powered](https://img.shields.io/badge/AI-Groq%20%2B%20HuggingFace-purple)
+![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-blue)
+![Node](https://img.shields.io/badge/Backend-Node.js%20%2B%20Express-green)
+![AI](https://img.shields.io/badge/AI-Groq%20LPU%20%2B%20HuggingFace-purple)
+![Database](https://img.shields.io/badge/Database-MongoDB%20Atlas-forestgreen)
+![Deployment](https://img.shields.io/badge/Deployed-Vercel%20%26%20Render-black)
 
-## 🚀 Features
+---
 
-* **🧠 AI Daily Planner:** Uses **Groq (Llama 3)** to instantly analyze all your tasks and generate a prioritized schedule.
-* **📝 Smart Summarization:** Uses **Hugging Face** to summarize long notes into concise takeaways.
-* **🔐 Secure Authentication:** Full JWT-based stateless authentication with BCrypt password hashing.
-* **⚡ Real-Time Performance:** Optimized with Groq LPU inference for sub-second AI responses.
-* **🎨 Modern UI:** Built with React + Tailwind CSS for a sleek, dark-mode aesthetic.
+## 🌐 Live Demo
+👉 **[Launch TaskMind AI](https://taskmind-ai-app.vercel.app)** *(Note: The backend is hosted on Render's Free Tier. If you are the first person visiting in a while, please allow 30-50 seconds for the server to wake up!)*
+
+---
+
+## 🚀 Key Features
+
+### 🧠 1. AI Daily Planner (Powered by Groq)
+* Uses the **Llama-3-70b** model via **Groq's LPU (Language Processing Unit)** engine.
+* Analyzes all your tasks, understands context/urgency, and generates a structured **Morning / Afternoon / Evening** schedule instantly (<1s latency).
+* **Circuit Breaker Logic:** If the primary AI fails, a fallback algorithm ensures the app never crashes.
+
+### 📝 2. Intelligent Note Taking
+* **Smart Separation:** Distinct tabs for **Actionable Tasks** and **Reference Notes**.
+* **Auto-Summarization:** Uses **Hugging Face (BART-Large)** to detect long notes (>150 chars) and offers a one-click summary.
+* **Rich UI:** "Read More" expansion, optional descriptions, and clean card-based layout.
+
+### 🔐 3. Enterprise-Grade Security
+* **Stateless Auth:** Secure access using **JWT (JSON Web Tokens)**.
+* **Data Privacy:** Passwords are hashed using **BCrypt** before storage.
+* **Production Security:** Strict **CORS** whitelisting preventing unauthorized API access.
+
+---
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** React (Vite), Tailwind CSS, Axios, React Router
-* **Backend:** Node.js, Express.js
-* **Database:** MongoDB Atlas
-* **AI Models:** Llama-3-70b (via Groq), BART-Large (via Hugging Face)
+| Component | Technology | Use Case |
+| :--- | :--- | :--- |
+| **Frontend** | React.js, Tailwind CSS | Responsive UI, State Management, Tabs System |
+| **Backend** | Node.js, Express.js | REST API, Business Logic, AI Orchestration |
+| **Database** | MongoDB Atlas | Cloud storage for Users and Notes |
+| **AI Engine 1** | **Groq SDK (Llama-3)** | High-speed reasoning for Daily Planning |
+| **AI Engine 2** | **Hugging Face (BART)** | Text summarization for long content |
+| **DevOps** | Vercel & Render | CI/CD Deployment pipeline |
 
-## 📦 How to Run Locally
+---
 
-1.  **Clone the repo:**
-    ```bash
-    git clone [https://github.com/YOUR_USERNAME/mindflow-ai.git](https://github.com/YOUR_USERNAME/mindflow-ai.git)
-    ```
-2.  **Install Backend Dependencies:**
-    ```bash
-    cd server
-    npm install
-    ```
-3.  **Install Frontend Dependencies:**
-    ```bash
-    cd ../client
-    npm install
-    ```
-4.  **Setup Environment Variables:**
-    Create a `.env` file in the `/server` folder with:
-    ```env
-    MONGO_URI=your_mongodb_string
-    JWT_SECRET=your_secret
-    GROQ_API_KEY=your_groq_key
-    HUGGINGFACE_API_KEY=your_hf_key
-    ```
-5.  **Run the App:**
-    ```bash
-    # Terminal 1 (Server)
-    cd server
-    npm run dev
+## 📦 Local Installation Guide
 
-    # Terminal 2 (Client)
-    cd client
-    npm run dev
-    ```
+If you want to run this project locally on your machine, follow these steps:
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/YOUR_USERNAME/taskmind-ai.git](https://github.com/YOUR_USERNAME/taskmind-ai.git)
+cd taskmind-ai
+
+### 2. Install Dependencies
+# Install Server Dependencies
+cd server
+npm install
+# Install Client Dependencies
+cd ../client
+npm install
+
+### 3. Setup Environment Variables
+Create a file named .env inside the /server folder and add the following keys:
+# Server Configuration
+PORT=5000
+
+# Database Connection (MongoDB Atlas or Local)
+MONGO_URI=mongodb+srv://<your_username>:<your_password>@cluster0.mongodb.net/taskmind-db
+
+# Security Secrets
+JWT_SECRET=put_any_long_random_string_here
+
+# AI Service Keys (Free Tiers)
+# Get key from: [https://console.groq.com/keys](https://console.groq.com/keys)
+GROQ_API_KEY=gsk_...
+# Get key from: [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
+HUGGINGFACE_API_KEY=hf_...
+
+### 4. Run the App
+cd server
+npm run dev
+cd client
+npm run dev
