@@ -47,9 +47,12 @@
 
 ---
 
-## 📦 Local Installation Guide
+## 📸 Screenshots
 
-If you want to run this project locally on your machine, follow these steps:
+![TaskMind Dashboard](dashboard.png)
+
+---
+
 
 ## 📦 Local Installation Guide
 
