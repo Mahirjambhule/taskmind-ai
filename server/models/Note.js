@@ -8,10 +8,10 @@ const noteSchema = mongoose.Schema(
       ref: 'User',
     },
     title: { type: String, required: true },
-    content: { type: String, required: true },
-    // NEW FIELD: Determines if this note goes to the AI Planner
+    // FIX: Content is NO LONGER required (optional for Tasks)
+    content: { type: String, required: false, default: "" }, 
     isTask: { type: Boolean, default: true }, 
-    summary: { type: String }, // To store AI summary if generated
+    summary: { type: String },
   },
   { timestamps: true }
 );

@@ -14,6 +14,7 @@ const getNotes = async (req, res) => {
 // @route   POST /api/notes
 // @access  Private
 const createNote = async (req, res) => {
+  // FIX: Only Title is mandatory now
   if (!req.body.title) {
     res.status(400);
     throw new Error('Please add a title');
@@ -21,8 +22,8 @@ const createNote = async (req, res) => {
 
   const note = await Note.create({
     title: req.body.title,
-    content: req.body.content || '', // Content is optional now
-    isTask: req.body.isTask !== undefined ? req.body.isTask : true, // Default to true if not sent
+    content: req.body.content || "", // If no content sent, save as empty string
+    isTask: req.body.isTask,
     user: req.user.id,
   });
 
