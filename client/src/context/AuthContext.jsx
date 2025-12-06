@@ -6,10 +6,16 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
 
+  // ✅ FIX: Restore User data on refresh
   useEffect(() => {
-    if (token) {
+    const storedUser = localStorage.getItem('user');
+    const storedToken = localStorage.getItem('token');
+    
+    if (storedToken && storedUser) {
+      setUser(JSON.parse(storedUser)); // Restore the user object (name, email)
+      setToken(storedToken);
     }
-  }, [token]);
+  }, []);
 
   const login = (userData, authToken) => {
     setUser(userData);
