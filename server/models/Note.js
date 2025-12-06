@@ -8,7 +8,6 @@ const noteSchema = mongoose.Schema(
       ref: 'User',
     },
     title: { type: String, required: true },
-    // FIX: Content is NO LONGER required (optional for Tasks)
     content: { type: String, required: false, default: "" }, 
     isTask: { type: Boolean, default: true }, 
     summary: { type: String },

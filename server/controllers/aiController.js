@@ -3,13 +3,10 @@ const Groq = require('groq-sdk');
 const dotenv = require('dotenv');
 dotenv.config();
 
-// 1. Hugging Face for Summarization (Legacy)
 const hf = new HfInference(process.env.HUGGINGFACE_API_KEY);
 
-// 2. Groq for Intelligent Planning
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-// --- Summarize Note (Uses Hugging Face) ---
 const summarizeNote = async (req, res) => {
   const { content } = req.body;
   if (!content) return res.status(400).json({ message: 'Content required' });
@@ -27,7 +24,6 @@ const summarizeNote = async (req, res) => {
   }
 };
 
-// --- Generate Daily Plan (Uses Groq - Llama 3) ---
 const generatePlan = async (req, res) => {
   const { notes } = req.body;
 
@@ -35,15 +31,12 @@ const generatePlan = async (req, res) => {
     return res.status(400).json({ message: 'No notes provided!' });
   }
 
-  // FILTER: Only grab notes that are marked as tasks
-  // (This prevents "Reference Notes" from cluttering your daily plan)
   const actionableNotes = notes.filter(note => note.isTask === true);
 
   if (actionableNotes.length === 0) {
     return res.status(200).json({ plan: "You have no tasks marked for the daily plan. Add some tasks first!" });
   }
 
-  // Create prompt from ONLY the actionable notes
   const tasksText = actionableNotes.map(n => `- ${n.title}: ${n.content}`).join('\n');
 
   try {

@@ -8,8 +8,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      // If token exists, we could verify it here, but for now we just assume logged in
-      // You can decode the JWT if needed later
     }
   }, [token]);
 

@@ -4,19 +4,18 @@ const {
   getNotes, 
   createNote, 
   deleteNote, 
-  updateNote // <--- ADD THIS HERE so the file knows what it is!
+  updateNote 
 } = require('../controllers/noteController');
 
 const { protect } = require('../middleware/authMiddleware');
 
-// Route for getting all notes and creating a new note
+
 router.route('/')
   .get(protect, getNotes)
   .post(protect, createNote);
 
-// Route for deleting and updating a specific note by ID
+
 router.route('/:id')
   .delete(protect, deleteNote)
-  .put(protect, updateNote); // <--- Now this will work
-
+  .put(protect, updateNote); 
 module.exports = router;
