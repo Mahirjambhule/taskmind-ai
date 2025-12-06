@@ -3,19 +3,15 @@ import { createContext, useState, useEffect } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
 
-  // ✅ FIX: Restore User data on refresh
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem('user');
-    const storedToken = localStorage.getItem('token');
-    
-    if (storedToken && storedUser) {
-      setUser(JSON.parse(storedUser)); // Restore the user object (name, email)
-      setToken(storedToken);
-    }
-  }, []);
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem('token') || null;
+  });
 
   const login = (userData, authToken) => {
     setUser(userData);
